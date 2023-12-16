@@ -20,7 +20,7 @@ jobs:
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USER }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}`
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       # Second step
       - name: Checkout
         # to fetch the contents of the repository into the runner
