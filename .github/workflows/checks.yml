@@ -1,0 +1,33 @@
+---
+# This is the name of the workflow 
+name: Checks
+
+# trigger the event that will run the jobs
+on: [push]
+
+jobs:
+  # This is the id of the job
+  test-lint:
+    # name of the job 
+    name: Test and Lint
+    # The runner is the os that we are going to run our job on
+    runs-on: ubuntu-20.04
+    # the different things that run for the job
+    steps:
+      # First step
+      - name: Login to DockerHub
+        # Another pre-made action that's provided in the github actions repo [docker]
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USER }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}`
+      # Second step
+      - name: Checkout
+        # to fetch the contents of the repository into the runner
+        uses: actions/checkout@v2
+      # Third step
+      - name: Test
+        run: docker-compose run --rm app sh -c "python manage.py test"
+      # Fourth step
+      - name: Lint
+        run: docker-compose run --rm app sh -c "flake8"
