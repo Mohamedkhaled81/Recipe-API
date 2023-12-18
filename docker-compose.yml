@@ -1,13 +1,22 @@
 version: '3.3'
 
+# Service = Container
 services:
+  # First Service
   app:
+    # Container name
+    container_name: recipe-app-container
+    # instructions to build the container through the dockerfile
+    # an image gonna be created with <name of the dir that contain the dockerfile>_<name_of_the_service> 
     build:
       context: .
       args:
         - DEV=true
+    # maping the ports
     ports:
       - "8000:8000"
+    # Bind mount or sync the local machine with the container two ways
+    # We can use relative path
     volumes:
       - ./app:/app
     command: >

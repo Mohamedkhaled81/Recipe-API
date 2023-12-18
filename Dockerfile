@@ -20,10 +20,10 @@ WORKDIR /app
 # Copy the app directory [ the django app that we are going to make in a moment ] into /app inside the container
 COPY ./app .
 
-
 # This exposes Port 8000 from our container to our machine when we run the container
-# it allows us to access that port on container that's runningfrom our image
-# and this way we can connect to the django development server 
+# it allows us to access that port on container that's running from our image
+# and this way we can connect to the django development server
+# This is for documentaion only 
 EXPOSE 8000
 
 ARG DEV=false
@@ -37,11 +37,14 @@ RUN python -m venv /py && \
         then /py/bin/pip install -r /tmp/requirements.dev.txt; \
     fi && \
     rm -rf /tmp && \
+    addgroup -g 1001 django-group && \
     adduser \
         --disabled-password \
-        --no-create-home \
+        -D \
+        -u 1001 \
+        -G django-group \ 
         django-user
-
+ 
 # This updates the environment variable inside the image and we are updating the path environment variable
 # It defines all of the data trees where executables can be run 
 ENV PATH="/py/bin:$PATH"
