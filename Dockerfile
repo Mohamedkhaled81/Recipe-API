@@ -26,6 +26,7 @@ COPY ./app .
 # This is for documentaion only 
 EXPOSE 8000
 
+# Build argument
 ARG DEV=false
 # Running Scripts, We spicify a single run commanad and we break it down onto multiple lines using this \ and the reason for that
 # is to make the building of our images as a bit more efficient
