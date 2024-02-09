@@ -25,6 +25,7 @@ services:
       # This is name of the service 
       - DB_HOST=db
       - DB_NAME=devdb
+      - DB_USER=devuser
       - DB_PASS=changeme
     # start the db service first
     depends_on:
