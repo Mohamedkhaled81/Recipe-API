@@ -6,6 +6,7 @@ from core import models
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext as _
 
+
 class UserAdmin(BaseUserAdmin):
     """Defines the admin pages for users"""
     ordering = ['id']
