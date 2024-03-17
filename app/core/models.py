@@ -14,13 +14,9 @@ class UserManager(BaseUserManager):
     # extra_field is for any keyword arguments
     def create_user(self, email, password=None, **extra_field):
         """Create, save and return a new user"""
-        # this way we can access the model we associated with.
         if not email:
             raise ValueError("The email should be inserted")
         user = self.model(email=self.normalize_email(email), **extra_field)
-        # this way we take the password and encrypt it through a hashing
-        # mechanism this means it has a one way encryption that can't be
-        # reversed
         user.set_password(password)
         user.save(using=self._db)
 
