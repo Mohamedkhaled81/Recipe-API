@@ -1,3 +1,4 @@
+# thats a yml file
 ---
 # This is the name of the workflow 
 name: Checks
@@ -23,7 +24,9 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       # Second step
       - name: Checkout
-        # to fetch the contents of the repository into the runner
+        # by default the code is not checked out inside the job because some jobs doesnt require the code..
+        # this check out step here to make sure the code is available for us
+        # to run the next step on..
         uses: actions/checkout@v2
       # Third step
       - name: Test

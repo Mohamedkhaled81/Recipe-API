@@ -38,6 +38,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     # Can the user login in the admin
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
+    
     # adding this is duplicate as it is already in PermissionsMixin
     # is_superuser = models.BooleanField(default=False)
 

@@ -11,6 +11,8 @@ from recipe import serializers
 
 class RecipeViewSet(viewsets.ModelViewSet):
     """View for manage recipe APIs."""
+    # We added RecipeDetailsSerializer as the default serializer
+    # Because we are going to need it for ather actions like Update - Create
     serializer_class = serializers.RecipeDetailsSerializer
     queryset = Recipe.objects.all()
     authentication_classes = [TokenAuthentication]

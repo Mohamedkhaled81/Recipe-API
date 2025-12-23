@@ -40,7 +40,8 @@ class TokenSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField(
         style={'input_type': 'password'},
-        trim_whitespace=False
+        trim_whitespace=False,
+        write_only=True
         )
 
     def validate(self, attrs):

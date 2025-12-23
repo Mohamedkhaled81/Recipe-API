@@ -9,13 +9,11 @@ from django.urls import (
 from rest_framework.routers import DefaultRouter
 from recipe import views
 
-router = DefaultRouter()
-router.register('recipes', views.RecipeViewSet)
-
 # This is for calling the reverse method
 app_name = 'recipe'
 
+router = DefaultRouter()
+router.register('', views.RecipeViewSet)
+
 # including the urls that are created by the routers..
-urlpatterns = [
-    path('', include(router.urls))
-]
+urlpatterns = router.urls

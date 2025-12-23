@@ -14,7 +14,7 @@ ENV PYTHONUNBUFFERED 1
 COPY ./requirements.txt /tmp/requirements.txt
 COPY ./requirements.dev.txt /tmp/requirements.dev.txt
 
-# The default directory that we are going to use it in any sybsequent instructions as ADD/COPY/RUN
+# The default directory that we are going to use it in any subsequent instructions as ADD/COPY/RUN
 WORKDIR /app
 
 # Copy the app directory [ the django app that we are going to make in a moment ] into /app inside the container
