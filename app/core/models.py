@@ -62,3 +62,13 @@ class Recipe(models.Model):
     def __str__(self) -> str:
         return self.title
 
+class Tag(models.Model):
+    """Tags Model"""
+    user = models.ForeignKey(
+        to=settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="tags")
+    name = models.CharField(unique=True, max_length=255, null=False)
+
+    def __str__(self) -> str:
+        return self.name

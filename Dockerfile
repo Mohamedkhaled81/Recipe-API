@@ -46,7 +46,7 @@ RUN python -m venv /py && \
     adduser \
         --disabled-password \
         -D \
-        -u 1001 \
+        -u 1000 \
         -G django-group \ 
         django-user
  
