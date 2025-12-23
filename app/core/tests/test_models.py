@@ -8,6 +8,10 @@ from django.test import TestCase
 
 from core import models
 
+def create_user(email="momo@gmail.com", password="812002"):
+    """Creating a helper function to create custom user"""
+    user = get_user_model().objects.create_user(email, password)
+    return user
 
 class ModelTests(TestCase):
     def test_create_user_with_email_password(self):
@@ -63,3 +67,12 @@ class ModelTests(TestCase):
             description='Sample recipe description.'
         )
         self.assertEqual(str(recipe), recipe.title)
+    
+    def test_create_tag(self):
+        """Testing creating a tag object in a Tag model"""
+        user = create_user()
+        tag = models.Tag.objects.create(
+            user=user,
+            name="Egyptian"
+        )
+        self.assertEqual(str(tag), tag.name)
