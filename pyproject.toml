@@ -9,9 +9,10 @@ readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
     "psycopg2 (>=2.9.11,<3.0.0)",
-    "django (>=3.2.4,<3.3)",
-    "djangorestframework (>=3.12.4,<3.13)",
-    "drf-spectacular (>=0.29.0,<0.30.0)"
+    "django (==4.2)",
+    "djangorestframework (==3.16)",
+    "drf-spectacular (>=0.29.0,<0.30.0)",
+    "drf-nested-routers (>=0.95.0,<0.96.0)"
 ]
 
 

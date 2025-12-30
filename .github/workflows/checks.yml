@@ -12,7 +12,7 @@ jobs:
     # name of the job 
     name: Test and Lint
     # The runner is the os that we are going to run our job on
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     # the different things that run for the job
     steps:
       # First step
