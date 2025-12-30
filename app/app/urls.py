@@ -6,16 +6,16 @@ from drf_spectacular.views import (
 )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     # Generates the schema
-    path('api/schema/', SpectacularAPIView.as_view(), name='api-schema'),
+    path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
     # Serve the swagger documentation for making GUI for our doc
     path(
-        'api/docs/',
-        SpectacularSwaggerView.as_view(url_name='api-schema'),
-        name='api-docs'
-        ),
-    path('api/user/', include('user.urls')),
-    path('api/recipes/', include('recipe.urls')),
-    path('api/tags/', include('tag.urls')),
+        "api/docs/",
+        SpectacularSwaggerView.as_view(url_name="api-schema"),
+        name="api-docs",
+    ),
+    path("api/user/", include("user.urls")),
+    path("api/recipes/", include("recipe.urls")),
+    path("api/tags/", include("tag.urls")),
 ]

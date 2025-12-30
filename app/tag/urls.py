@@ -1,14 +1,9 @@
-from django.urls import (
-    path,
-    include,
-)
-
 from rest_framework.routers import DefaultRouter
 from tag import views
 
-app_name = 'tag'
+app_name = "tag"
 
 router = DefaultRouter()
-router.register('', views.TagModelViewSet)
+router.register("", views.TagModelViewSet)
 
 urlpatterns = router.urls

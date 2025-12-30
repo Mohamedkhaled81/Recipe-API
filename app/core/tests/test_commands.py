@@ -1,6 +1,7 @@
 """
 Test custom django management commands.
 """
+
 # For mocking the behavior of the database..
 from unittest.mock import patch
 
@@ -27,9 +28,10 @@ from django.test import SimpleTestCase
 # and we are going to mock that check method returning an exception..
 
 
-@patch('core.management.commands.wait_for_db.Command.check')
+@patch("core.management.commands.wait_for_db.Command.check")
 class commandTests(SimpleTestCase):
     """Test commands."""
+
     # patched_check object replaces check
     # is passed due to patch mocking decorator..
     # This is one possible test case that we call
@@ -43,13 +45,13 @@ class commandTests(SimpleTestCase):
 
         # This execute the code inside the wait_for_db
         # and also checks the command is setup correclty and can be called..
-        call_command('wait_for_db')
+        call_command("wait_for_db")
 
         # Ensures the mocked object which is the check method
         # is called once with this parameters..
-        patched_check.assert_called_once_with(databases=['default'])
+        patched_check.assert_called_once_with(databases=["default"])
 
-    @patch('time.sleep')
+    @patch("time.sleep")
     def test_wait_for_db_delay(self, patched_sleep, patched_check):
         """Test waiting for database when getting OperationalError."""
         # Here we want to raise some exceptions that would be
@@ -66,10 +68,11 @@ class commandTests(SimpleTestCase):
         # database is ready to get connections
         # But it hasn't set up the testing database that
         # we want to use in that case django raises the operational error
-        patched_check.side_effect = [Psycopg2Error] * 2 + \
-            [OperationalError] * 3 + [True]
-        call_command('wait_for_db')
+        patched_check.side_effect = (
+            [Psycopg2Error] * 2 + [OperationalError] * 3 + [True]
+        )
+        call_command("wait_for_db")
 
         # We are going to check that our mocked check method is called 6 times
         self.assertEqual(patched_check.call_count, 6)
-        patched_check.assert_called_with(databases=['default'])
+        patched_check.assert_called_with(databases=["default"])
