@@ -13,8 +13,8 @@ class RecipeViewSet(viewsets.ModelViewSet):
     """View for manage recipe APIs."""
     # We added RecipeDetailsSerializer as the default serializer
     # Because we are going to need it for ather actions like Update - Create
-    serializer_class = serializers.RecipeDetailsSerializer
     queryset = Recipe.objects.all()
+    serializer_class=serializers.RecipeReadDetailsSerializer
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
@@ -24,8 +24,10 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
     def get_serializer_class(self):
         """Return the serializer class for request."""
-        if self.action == 'list':
-            return serializers.RecipeSerializer
+        if self.action in ['create', 'update', 'destroy', 'partial_update']:
+            return serializers.RecipeWriteSerializer
+        elif self.action == 'list':
+            return serializers.RecipeReadSerializer
         return self.serializer_class
 
     def perform_create(self, serializer):
